@@ -9,7 +9,7 @@ pipeline:
   use_planner: false
   render_from_object: true
   refinement_enabled: false
-  seed_offset: 5000015
+  seed_offset: 4000012
   coder_probe:
     enabled: true
     concurrency: 48
@@ -43,8 +43,8 @@ llm_clients:
     base_url: "http://127.0.0.1:8001/v1"
     api_key: "local"
     vllm:
-      model: "Fluxmire/Qwen-3.6-27B-UmberShark"
-      revision: "eb943a85e3b32c3f752e3969a2499583641aefd3"
+      model: "Fluxmire/Qwen-3.6-27B-UmberShrike-v4"
+      revision: "ff698f409a87db3cc71ee64c0887fa767e1474be"
       gpu_ids: "0,1"
       tensor_parallel_size: 1
       data_parallel_size: 2
@@ -80,7 +80,7 @@ embedder:
 actors:
   planner:
     client: "coder-instance"
-    model: "Fluxmire/Qwen-3.6-27B-UmberShark"
+    model: "Fluxmire/Qwen-3.6-27B-UmberShrike-v4"
     workers: 256
     queue_size: 128
     max_tokens: 32768
@@ -98,7 +98,7 @@ actors:
       allow_fallbacks: true
   coder:
     client: "coder-instance"
-    model: "Fluxmire/Qwen-3.6-27B-UmberShark"
+    model: "Fluxmire/Qwen-3.6-27B-UmberShrike-v4"
     workers: 96
     queue_size: 64
     max_tokens: 24576
