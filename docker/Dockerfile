@@ -40,12 +40,12 @@ RUN apt-get update && apt-get install -y \
 # Python deps
 COPY docker/requirements.vllm.txt /tmp/requirements.vllm.txt
 COPY docker/requirements.txt      /tmp/requirements.txt
+COPY docker/requirements.lock.txt /tmp/requirements.lock.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip \
     python3 -m venv /opt/vllm-env && \
-    /opt/vllm-env/bin/pip install --upgrade pip && \
-    /opt/vllm-env/bin/pip install --no-build-isolation -r /tmp/requirements.vllm.txt && \
-    pip install -r /tmp/requirements.txt
+    /opt/vllm-env/bin/pip install pip==26.2.1 && \
+    /opt/vllm-env/bin/pip install --no-deps --extra-index-url https://download.pytorch.org/whl/cu128 -r /tmp/requirements.lock.txt
 
 # Node deps 
 WORKDIR /workspace
